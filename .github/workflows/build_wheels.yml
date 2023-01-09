@@ -23,8 +23,9 @@ jobs:
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_BEFORE_ALL_WINDOWS: >
             echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" >> %GITHUB_ENV% &&
-            vcpkg install gmp:x64-windows
-          CIBW_ENVIRONMENT_WINDOWS: PIP_GLOBAL_OPTION="build_ext -IC:\vcpkg\packages\gmp_x64-windows\include -LC:\vcpkg\packages\gmp_x64-windows\lib"
+            vcpkg install gmp:x64-windows　&&
+            set INCLUDE=%INCLUDE%;C:\vcpkg\packages\gmp_x64-windows\include &&
+            set LIB=%LIB%;C:\vcpkg\packages\gmp_x64-windows\lib
 
       - uses: actions/upload-artifact@v3
         with:
