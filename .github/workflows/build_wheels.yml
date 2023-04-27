@@ -25,7 +25,6 @@ jobs:
             GITHUB_ENV=$env:VCPKG_INSTALLATION_ROOT"
             INCLUDE="C:\vcpkg\packages\gmp_x64-windows\include"
             LIB="C:\vcpkg\packages\gmp_x64-windows\lib"
-            PATH="$INCLUDE;$LIB;$PATH"
           CIBW_BEFORE_ALL_WINDOWS: >
             vcpkg install gmp:x64-windows
 
