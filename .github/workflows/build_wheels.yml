@@ -21,11 +21,10 @@ jobs:
           CIBW_ARCHS_MACOS: x86_64 arm64
           CIBW_BEFORE_ALL_MACOS: brew install gmp
           CIBW_ARCHS_WINDOWS: AMD64
-          CIBW_ENVIRONMENT_WINDOWS: >
-            GITHUB_ENV=$env:VCPKG_INSTALLATION_ROOT"
-            INCLUDE="C:\vcpkg\packages\gmp_x64-windows\include"
-            LIB="C:\vcpkg\packages\gmp_x64-windows\lib"
           CIBW_BEFORE_ALL_WINDOWS: >
+            echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" >> %GITHUB_ENV% &&
+            echo "C:\vcpkg\packages\gmp_x64-windows\include" >> %INCLUDE% &&
+            echo "C:\vcpkg\packages\gmp_x64-windows\lib" >> %LIB% &&
             vcpkg install gmp:x64-windows
 
       - uses: actions/upload-artifact@v3
