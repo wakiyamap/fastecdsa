@@ -23,15 +23,11 @@ jobs:
           CIBW_ARCHS_WINDOWS: AMD64
           CIBW_BEFORE_ALL_WINDOWS: >
             echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" >> %GITHUB_ENV% &&
-            echo "C:\vcpkg\packages\gmp_x64-windows\include" >> %INCLUDE% &&
-            echo "C:\vcpkg\packages\gmp_x64-windows\lib" >> %LIBPATH% &&
             vcpkg install gmp:x64-windows &&
-            echo $GITHUB_ENV &&
-            echo $INCLUDE &&
-            echo $LIBPATH &&
-            echo $LIB &&
+            set &&
             dir "C:\vcpkg\packages\gmp_x64-windows\include" &&
             dir "C:\vcpkg\packages\gmp_x64-windows\lib"
+          CIBW_ENVIRONMENT_WINDOWS: CFLAGS='-IC:\vcpkg\packages\gmp_x64-windows\include' LDFLAGS='-LC:\vcpkg\packages\gmp_x64-windows\lib'
 
       - uses: actions/upload-artifact@v3
         with:
