@@ -25,7 +25,13 @@ jobs:
             echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" >> %GITHUB_ENV% &&
             echo "C:\vcpkg\packages\gmp_x64-windows\include" >> %INCLUDE% &&
             echo "C:\vcpkg\packages\gmp_x64-windows\lib" >> %LIBPATH% &&
-            vcpkg install gmp:x64-windows
+            vcpkg install gmp:x64-windows &&
+            echo $GITHUB_ENV &&
+            echo $INCLUDE &&
+            echo $LIBPATH &&
+            echo $LIB &&
+            dir "C:\vcpkg\packages\gmp_x64-windows\include" &&
+            dir "C:\vcpkg\packages\gmp_x64-windows\lib"
 
       - uses: actions/upload-artifact@v3
         with:
