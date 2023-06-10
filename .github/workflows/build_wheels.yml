@@ -27,7 +27,7 @@ jobs:
             set &&
             dir "C:\vcpkg\packages\gmp_x64-windows\include" &&
             dir "C:\vcpkg\packages\gmp_x64-windows\lib"
-          CIBW_ENVIRONMENT_WINDOWS: CFLAGS='-IC:\vcpkg\packages\gmp_x64-windows\include' LDFLAGS='-LC:\vcpkg\packages\gmp_x64-windows\lib'
+          CIBW_ENVIRONMENT_WINDOWS: _CL_="-IC:\vcpkg\packages\gmp_x64-windows\include -LC:\vcpkg\packages\gmp_x64-windows\lib"
 
       - uses: actions/upload-artifact@v3
         with:
