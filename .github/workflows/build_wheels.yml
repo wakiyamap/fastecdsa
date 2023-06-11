@@ -24,7 +24,7 @@ jobs:
           CIBW_BEFORE_ALL_WINDOWS: >
             echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" >> %GITHUB_ENV% &&
             set &&
-            vcpkg install gmp:${{ vars.RUNNER_ARCH }}-windows-static
+            vcpkg install gmp:x86-windows-static
           CIBW_ENVIRONMENT_WINDOWS: _CL_='-IC:\vcpkg\packages\gmp_${{ vars.RUNNER_ARCH }}-windows-static\include' LIB='C:\vcpkg\packages\gmp_${{ vars.RUNNER_ARCH }}-windows-static\lib'
 
 
