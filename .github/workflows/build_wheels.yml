@@ -25,8 +25,13 @@ jobs:
             echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" >> %GITHUB_ENV% &&
             set &&
             vcpkg install gmp:x86-windows-static
-          CIBW_ENVIRONMENT_WINDOWS: _CL_='-IC:\vcpkg\packages\gmp_${{ vars.RUNNER_ARCH }}-windows-static\include' LIB='C:\vcpkg\packages\gmp_${{ vars.RUNNER_ARCH }}-windows-static\lib'
-
+          CIBW_BEFORE_BUILD_WINDOWS: >
+            - if: CIBW_ARCHS_WINDOWS == x86
+              set _CL_='-IC:\vcpkg\packages\gmp_x86-windows-static\include'
+              set LIB='C:\vcpkg\packages\gmp_x86-windows-static\lib'
+            - if: CIBW_ARCHS_WINDOWS == AMD64
+              set _CL_='-IC:\vcpkg\packages\gmp_x64-windows-static\include'
+              set LIB='C:\vcpkg\packages\gmp_x64-windows-static\lib'
 
       - uses: actions/upload-artifact@v3
         with:
