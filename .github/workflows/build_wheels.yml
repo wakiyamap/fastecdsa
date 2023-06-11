@@ -11,8 +11,6 @@ jobs:
         include:
           - os: windows-2022
             arch: x86
-          - os: windows-2022
-            arch: x64
 
     steps:
       - uses: actions/checkout@v3
@@ -24,10 +22,12 @@ jobs:
           CIBW_BEFORE_ALL_LINUX: apt-get install libgmp3-dev || yum install -y gmp-devel || apk add --upgrade gmp-dev
           CIBW_ARCHS_MACOS: x86_64 arm64
           CIBW_BEFORE_ALL_MACOS: brew install gmp
+          CIBW_ARCHS_WINDOWS: x86
           CIBW_BEFORE_ALL_WINDOWS: >
             echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" >> %GITHUB_ENV% &&
-            vcpkg install gmp:${{ matrix.arch}}-windows-static
-          CIBW_ENVIRONMENT_WINDOWS: _CL_='-IC:\vcpkg\packages\gmp_${{ matrix.arch}}-windows-static\include' LIB='C:\vcpkg\packages\gmp_${{ matrix.arch}}-windows-static\lib'
+            set &&
+            vcpkg install gmp:x86-windows-static
+          CIBW_ENVIRONMENT_WINDOWS: _CL_='-IC:\vcpkg\packages\gmp_x86-windows-static\include' LIB='C:\vcpkg\packages\gmp_x86-windows-static\lib'
 
 
       - uses: actions/upload-artifact@v3
