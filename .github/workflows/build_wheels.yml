@@ -23,7 +23,6 @@ jobs:
           CIBW_ARCHS_WINDOWS: x86 AMD64
           CIBW_BEFORE_ALL_WINDOWS: >
             echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" >> %GITHUB_ENV% &&
-            vcpkg update &&
             vcpkg install gmp:x86-windows-static
           CIBW_BEFORE_BUILD_WINDOWS: >
             set _CL_='-IC:\vcpkg\packages\gmp_x86-windows-static\include;-IC:\vcpkg\packages\gmp_x64-windows-static\include'
