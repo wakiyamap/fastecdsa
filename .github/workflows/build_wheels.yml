@@ -27,7 +27,7 @@ jobs:
           CIBW_BEFORE_BUILD_WINDOWS: >
             if %CIBW_ARCHS_WINDOWS% == x86 (
               set _CL_='-IC:\vcpkg\packages\gmp_x86-windows-static\include;-IC:\vcpkg\packages\gmp_x64-windows-static\include'
-              set LIB='C:\vcpkg\packages\gmp_x86-windows-static\lib;LIB='C:\vcpkg\packages\gmp_x64-windows-static\lib'
+              set LIB='C:\vcpkg\packages\gmp_x86-windows-static\lib;C:\vcpkg\packages\gmp_x64-windows-static\lib'
 
       - uses: actions/upload-artifact@v3
         with:
